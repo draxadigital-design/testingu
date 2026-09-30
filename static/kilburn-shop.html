@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KILBURN — Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080808;--el:#111;--fg:#f5f5f5;--dim:#8a8a8a;--acc:#ff2a2a;--yel:#e5ff00;--bd:rgba(255,255,255,.12);--wa:#25d366;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f4ef;--el:#fff;--fg:#111;--dim:#666;--bd:rgba(0,0,0,.15);--yel:#111}}
+:root[data-theme="light"]{--bg:#f6f4ef;--el:#fff;--fg:#111;--dim:#666;--bd:rgba(0,0,0,.15);--yel:#111}
+:root[data-theme="dark"]{--bg:#080808;--el:#111;--fg:#f5f5f5;--dim:#8a8a8a;--bd:rgba(255,255,255,.12);--yel:#e5ff00}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Space Grotesk',system-ui,sans-serif;overflow-x:hidden}
+.d{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;letter-spacing:-.035em;line-height:.95}
+.m{font-family:'JetBrains Mono',ui-monospace,monospace;letter-spacing:.04em}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+.logo{display:flex;align-items:center;gap:10px}.logo b{width:34px;height:34px;background:var(--acc);color:#000;display:grid;place-items:center}
+button,select,input,textarea{font:inherit;color:inherit}
+.btn{background:var(--acc);color:#000;border:1px solid var(--acc);padding:11px 18px;font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:.05em;cursor:pointer}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--fg)}
+.btn.wa{background:var(--wa);border-color:var(--wa)}.btn.ghost{background:transparent;color:var(--fg);border-color:var(--bd)}.btn[disabled]{opacity:.4;pointer-events:none}
+main{max-width:1200px;margin:0 auto;padding:0 20px 60px}
+.hero{padding:56px 0 32px}.hero h1{font-size:clamp(40px,8vw,88px);margin:12px 0}.hero h1 span{color:var(--acc)}.hero p{color:var(--dim);max-width:560px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:24px 0}
+.chip{border:1px solid var(--bd);background:transparent;padding:8px 14px;font-size:12px;cursor:pointer}.chip.on{background:var(--fg);color:var(--bg)}
+select,input,textarea{background:var(--el);border:1px solid var(--bd);padding:10px 12px;width:100%;border-radius:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{background:var(--el);border:1px solid var(--bd);display:flex;flex-direction:column;transition:border-color .25s}.card:hover{border-color:var(--yel)}
+.img{aspect-ratio:4/3;background:linear-gradient(135deg,#1c1c1c,#2a0a0a);position:relative;overflow:hidden;display:grid;place-items:center;font-size:44px}
+.img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.tag{position:absolute;top:10px;left:10px;background:var(--yel);color:#000;padding:3px 8px;font-size:10px;font-weight:700;z-index:1}
+.price{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.85);color:#fff;padding:5px 10px;font-size:14px;z-index:1}
+.body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}.body h3{margin:0;font-size:20px}.body p{margin:0;color:var(--dim);font-size:14px;flex:1}
+.empty{border:1px dashed var(--bd);padding:48px 20px;text-align:center;color:var(--dim)}
+dialog{background:var(--el);color:var(--fg);border:1px solid var(--bd);padding:0;width:min(520px,94vw);max-height:90vh}
+dialog::backdrop{background:rgba(0,0,0,.7)}.dlg{padding:22px;display:grid;gap:12px}.dlg label{font-size:11px;color:var(--dim);display:grid;gap:5px;text-transform:uppercase}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.arow{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--bd);font-size:14px}
+.note{font-size:12px;color:var(--dim)}.err{color:var(--acc);font-size:12px;min-height:14px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 16px;font-size:13px;z-index:50}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><b class="d">K</b><div><div class="d" style="font-size:20px">KILBURN</div><div class="m" style="font-size:10px;color:var(--dim)">SHOP</div></div></div>
+  <div style="display:flex;gap:8px"><button class="btn ghost" id="adminBtn" hidden>Admin</button></div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="m" style="font-size:11px;color:var(--acc)">/ THE SHOP — ORDER VIA WHATSAPP</div>
+    <h1 class="d" id="storeName">Gear I'd <span>actually</span> buy.</h1>
+    <p>Pick a product, tap Order, and your details go straight to my WhatsApp. No accounts, no card forms.</p>
+  </section>
+
+  <div class="bar" id="chips"></div>
+  <div class="bar"><span class="m note">SORT</span><div style="max-width:200px"><select id="sort"><option value="new">Newest</option><option value="lo">Price: low → high</option><option value="hi">Price: high → low</option></select></div></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<!-- Order dialog -->
+<dialog id="orderDlg"><form method="dialog" class="dlg" id="orderForm">
+  <div class="d" style="font-size:28px" id="oTitle"></div>
+  <div class="m" id="oPrice" style="color:var(--acc)"></div>
+  <label>Your name<input id="oName" maxlength="60" required autocomplete="name"></label>
+  <div class="row"><label>Quantity<input id="oQty" type="number" min="1" max="20" value="1" required></label><label>City / delivery area<input id="oCity" maxlength="60"></label></div>
+  <label>Note (optional)<textarea id="oNote" maxlength="300" rows="2"></textarea></label>
+  <div class="err" id="oErr"></div>
+  <div class="row"><button type="button" class="btn ghost" id="oCancel">Cancel</button><button class="btn wa" id="oGo">Continue on WhatsApp</button></div>
+  <div class="note">This opens WhatsApp with a pre-filled message. Payment and delivery are agreed with the seller in chat — never send card details or passwords.</div>
+</form></dialog>
+
+<!-- Admin dialog -->
+<dialog id="adminDlg"><div class="dlg">
+  <div class="d" style="font-size:28px">Admin</div>
+  <div class="note">Only signed-in editors/owners of this page can save changes — enforced by the server, not just this screen.</div>
+  <div class="m" style="font-size:11px;color:var(--acc)">STORE SETTINGS</div>
+  <label>Your WhatsApp number (country code, digits only)<input id="sWa" inputmode="numeric" placeholder="2348012345678" maxlength="20"></label>
+  <div class="row"><label>Currency symbol<input id="sCur" maxlength="4" value="₦"></label><label>Headline (optional)<input id="sName" maxlength="60"></label></div>
+  <button class="btn" id="sSave">Save settings</button>
+  <div class="m" style="font-size:11px;color:var(--acc);margin-top:8px">POST A PRODUCT</div>
+  <label>Name<input id="pName" maxlength="80"></label>
+  <div class="row"><label>Price<input id="pPrice" type="number" min="0" step="any"></label><label>Category<input id="pCat" maxlength="24" placeholder="Audio"></label></div>
+  <label>Description<textarea id="pDesc" rows="2" maxlength="300"></textarea></label>
+  <label>Photo (JPG/PNG/WebP, max 5 MB)<input id="pImg" type="file" accept="image/jpeg,image/png,image/webp"></label>
+  <div class="err" id="aErr"></div>
+  <button class="btn" id="pSave">Publish product</button>
+  <div class="m" style="font-size:11px;color:var(--acc);margin-top:8px">YOUR PRODUCTS</div>
+  <div id="aList"></div>
+  <button class="btn ghost" id="aClose">Close</button>
+</div></dialog>
+
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+const h=(t,a={},...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a)){if(x==='class')e.className=v;else if(x.startsWith('on'))e.addEventListener(x.slice(2),v);else e.setAttribute(x,v)}k.flat().forEach(c=>e.append(c instanceof Node?c:document.createTextNode(String(c))));return e};
+const toast=t=>{const e=h('div',{class:'toast'},t);document.body.append(e);setTimeout(()=>e.remove(),3200)};
+const state={products:[],settings:{wa:'',cur:'₦',name:''},cat:'all',db:null,admin:false};
+const fmt=n=>state.settings.cur+Number(n).toLocaleString();
+const cleanWa=v=>String(v||'').replace(/\D/g,'');
+const validWa=v=>/^[1-9]\d{7,14}$/.test(v);
+const clean=(s,n)=>String(s||'').replace(/[\u0000-\u001f\u007f<>]/g,' ').trim().slice(0,n);
+const safeImg=id=>/^[A-Za-z0-9_-]{6,80}$/.test(String(id||''))?'/_blob/'+id:null;
+
+function render(){
+  $('storeName').replaceChildren(...(state.settings.name?[document.createTextNode(state.settings.name)]:[document.createTextNode("Gear I'd "),h('span',{},'actually'),document.createTextNode(' buy.')]));
+  const cats=['all',...new Set(state.products.map(p=>p.cat).filter(Boolean))];
+  if(!cats.includes(state.cat))state.cat='all';
+  $('chips').replaceChildren(...cats.map(c=>h('button',{class:'chip m'+(c===state.cat?' on':''),onclick:()=>{state.cat=c;render()}},c.toUpperCase())));
+  let list=state.products.filter(p=>state.cat==='all'||p.cat===state.cat);
+  const s=$('sort').value;
+  list.sort((a,b)=>s==='lo'?a.price-b.price:s==='hi'?b.price-a.price:(b.ts||0)-(a.ts||0));
+  if(!list.length){$('grid').replaceChildren(h('div',{class:'empty',style:'grid-column:1/-1'},state.db?'No products yet.'+(state.admin?' Open Admin to post your first one.':' Check back soon.'):'The shop catalogue needs you to be signed in to claude.ai to load.'));}
+  else $('grid').replaceChildren(...list.map(card));
+}
+function card(p){
+  const src=safeImg(p.img);
+  return h('article',{class:'card'},
+    h('div',{class:'img'},src?h('img',{src,alt:p.name,loading:'lazy'}):'📦',p.cat?h('span',{class:'tag m'},p.cat.toUpperCase()):'',h('span',{class:'price m'},fmt(p.price))),
+    h('div',{class:'body'},h('h3',{class:'d'},p.name),h('p',{},p.desc||''),
+      h('button',{class:'btn wa',disabled:p.sold?'':null,onclick:()=>openOrder(p)},p.sold?'Sold out':'Order on WhatsApp')));
+}
+let cur=null,lastGo=0;
+function openOrder(p){
+  if(!validWa(state.settings.wa)){toast('The seller has not set up WhatsApp yet.');return}
+  cur=p;$('oTitle').textContent=p.name;$('oPrice').textContent=fmt(p.price)+' each';$('oErr').textContent='';$('orderDlg').showModal();
+}
+$('oCancel').onclick=()=>$('orderDlg').close();
+$('orderForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!cur)return;
+  if(Date.now()-lastGo<4000){$('oErr').textContent='Please wait a moment.';return}
+  const name=clean($('oName').value,60),qty=Math.floor(Number($('oQty').value)),city=clean($('oCity').value,60),note=clean($('oNote').value,300);
+  if(!name){$('oErr').textContent='Please enter your name.';return}
+  if(!(qty>=1&&qty<=20)){$('oErr').textContent='Quantity must be 1–20.';return}
+  const total=cur.price*qty;
+  const msg=['Hello! I want to order from KILBURN:','',
+    'Product: '+cur.name,'Ref: '+cur.id,'Price: '+fmt(cur.price),'Qty: '+qty,'Total: '+fmt(total),'',
+    'Name: '+name,city?'Area: '+city:null,note?'Note: '+note:null].filter(x=>x!==null).join('\n');
+  lastGo=Date.now();
+  const url='https://wa.me/'+state.settings.wa+'?text='+encodeURIComponent(msg);
+  window.open(url,'_blank','noopener,noreferrer');
+  $('orderDlg').close();toast('Opening WhatsApp…');
+});
+
+/* ---------- Admin ---------- */
+function adminList(){
+  $('aList').replaceChildren(...(state.products.length?state.products.map(p=>h('div',{class:'arow'},
+    h('span',{},p.name+' — '+fmt(p.price)+(p.sold?' (sold out)':'')),
+    h('span',{style:'display:flex;gap:6px'},
+      h('button',{class:'chip',onclick:()=>toggleSold(p)},p.sold?'Restock':'Sold out'),
+      h('button',{class:'chip',onclick:()=>del(p)},'Delete')))):[h('div',{class:'note'},'Nothing posted yet.')]));
+}
+async function toggleSold(p){try{await state.db.doc('products/'+p.id).update({sold:!p.sold})}catch(e){toast('Not allowed or failed.')}}
+async function del(p){if(!confirm('Delete "'+p.name+'"?'))return;try{await state.db.doc('products/'+p.id).delete()}catch(e){toast('Not allowed or failed.')}}
+$('adminBtn').onclick=()=>{$('sWa').value=state.settings.wa;$('sCur').value=state.settings.cur;$('sName').value=state.settings.name;adminList();$('adminDlg').showModal()};
+$('aClose').onclick=()=>$('adminDlg').close();
+$('sSave').onclick=async()=>{
+  const wa=cleanWa($('sWa').value);
+  if(!validWa(wa)){$('aErr').textContent='Enter a valid number with country code, e.g. 2348012345678 (no + or spaces).';return}
+  try{await state.db.doc('shop/settings').set({wa,cur:clean($('sCur').value,4)||'₦',name:clean($('sName').value,60)});$('aErr').textContent='';toast('Settings saved')}catch(e){$('aErr').textContent='Save refused: you are not an editor of this page.'}
+};
+$('pSave').onclick=async()=>{
+  const name=clean($('pName').value,80),price=Number($('pPrice').value),cat=clean($('pCat').value,24),desc=clean($('pDesc').value,300),f=$('pImg').files[0];
+  if(!name||!isFinite(price)||price<0||price>1e9){$('aErr').textContent='Add a name and a valid price.';return}
+  if(f&&(!/^image\/(jpeg|png|webp)$/.test(f.type)||f.size>5*1024*1024)){$('aErr').textContent='Photo must be JPG/PNG/WebP under 5 MB.';return}
+  $('pSave').disabled=true;
+  try{
+    let img=null;
+    if(f){const assets=await claude.use('assets');if(!assets)throw new Error('assets');img=(await assets.upload(f)).id}
+    const ref=state.db.collection('products').doc();
+    await ref.set({name,price,cat,desc,img,sold:false,ts:Date.now()});
+    ['pName','pPrice','pCat','pDesc','pImg'].forEach(i=>$(i).value='');$('aErr').textContent='';toast('Product published');
+  }catch(e){$('aErr').textContent='Could not publish. Only editors can post products.'}
+  $('pSave').disabled=false;
+};
+$('sort').onchange=render;
+
+/* ---------- Boot ---------- */
+render();
+(async()=>{
+  try{
+    const [db,user]=await Promise.all([claude.use('db'),claude.use('user')]);
+    if(!db)return;
+    state.db=db;state.admin=!!(user&&user.canEdit());
+    $('adminBtn').hidden=!state.admin;
+    db.doc('shop/settings').onSnapshot(s=>{const d=s.exists?s.data():{};state.settings={wa:cleanWa(d.wa),cur:clean(d.cur,4)||'₦',name:clean(d.name,60)};render()},()=>{});
+    db.collection('products').onSnapshot(q=>{
+      state.products=q.docs.map(x=>{const d=x.data()||{};return{id:x.id,name:clean(d.name,80),price:Number(d.price)||0,cat:clean(d.cat,24),desc:clean(d.desc,300),img:d.img,sold:!!d.sold,ts:Number(d.ts)||0}}).filter(p=>p.name);
+      render();if($('adminDlg').open)adminList();
+    },()=>{});
+  }catch(e){}
+})();
+})();
+</script>
+</body>
+</html>

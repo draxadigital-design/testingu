@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GiveThemGist — Nigeria's Top Gisting Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0f0c;--el:#121a15;--fg:#f4f6f4;--dim:#93a097;--g:#00b85c;--y:#ffd400;--bd:rgba(255,255,255,.12);--wa:#25d366;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f7faf7;--el:#fff;--fg:#0d1a12;--dim:#5b6b60;--bd:rgba(0,0,0,.14)}}
+:root[data-theme="light"]{--bg:#f7faf7;--el:#fff;--fg:#0d1a12;--dim:#5b6b60;--bd:rgba(0,0,0,.14)}
+:root[data-theme="dark"]{--bg:#0a0f0c;--el:#121a15;--fg:#f4f6f4;--dim:#93a097;--bd:rgba(255,255,255,.12)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Space Grotesk',system-ui,sans-serif;overflow-x:hidden}
+.d{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1}
+a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit;color:inherit}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+.nav{max-width:1150px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font-size:24px}.logo span{color:var(--g)}.links{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;font-weight:500}.links a{color:var(--dim)}.links a.on,.links a:hover{color:var(--fg)}
+main{max-width:1150px;margin:auto;padding:0 20px 50px}
+.hero{padding:56px 0 24px}.hero h1{font-size:clamp(42px,9vw,96px);margin:0 0 14px}.hero h1 span{color:var(--g)}.hero p{color:var(--dim);max-width:560px;font-size:18px}
+.btn{background:var(--g);color:#031;border:1px solid var(--g);padding:11px 18px;font-weight:700;font-size:13px;text-transform:uppercase;cursor:pointer;display:inline-block}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--bd)}.btn.wa{background:var(--wa);border-color:var(--wa)}.btn[disabled]{opacity:.4;pointer-events:none}
+.sec{margin-top:48px}.sh{display:flex;justify-content:space-between;align-items:end;margin-bottom:16px}.sh h2{font-size:34px;margin:0}.sh a{color:var(--g);font-size:14px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:var(--el);border:1px solid var(--bd);display:flex;flex-direction:column}.card:hover{border-color:var(--y)}
+.im{aspect-ratio:16/10;background:linear-gradient(135deg,#063d22,#1a1a05);display:grid;place-items:center;font-size:40px;position:relative;overflow:hidden}.im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;top:8px;left:8px;background:var(--y);color:#000;font-size:10px;font-weight:700;padding:3px 7px;z-index:1;text-transform:uppercase}
+.pr{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.85);color:#fff;padding:4px 9px;font-size:14px;z-index:1}
+.bd{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}.bd h3{margin:0;font-size:19px}.bd p{margin:0;color:var(--dim);font-size:14px;flex:1}
+.meta{font-size:11px;color:var(--dim);text-transform:uppercase}
+.art{max-width:720px;margin:32px auto}.art h1{font-size:clamp(32px,6vw,52px)}.art p{line-height:1.75;color:var(--dim);font-size:17px}
+input,textarea,select{background:var(--el);border:1px solid var(--bd);padding:10px;width:100%;border-radius:0}
+label{display:grid;gap:5px;font-size:11px;color:var(--dim);text-transform:uppercase}
+.box{background:var(--el);border:1px solid var(--bd);padding:20px;display:grid;gap:12px}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:140px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tab{border:1px solid var(--bd);background:none;padding:8px 14px;cursor:pointer}.tab.on{background:var(--fg);color:var(--bg)}
+.ar{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid var(--bd);font-size:14px}
+.pub{position:sticky;bottom:calc(10px + env(safe-area-inset-bottom,0px));background:var(--y);color:#000;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:700;margin-top:20px}
+.err{color:#ff5a4d;font-size:13px;min-height:16px}
+dialog{background:var(--el);color:var(--fg);border:1px solid var(--bd);width:min(480px,94vw);padding:22px}dialog::backdrop{background:rgba(0,0,0,.7)}
+footer{border-top:1px solid var(--bd);padding:28px 20px;text-align:center;color:var(--dim);font-size:13px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 16px;z-index:50;font-size:13px}
+.lk{color:var(--g);text-decoration:underline}.tags{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.chip{border:1px solid var(--bd);padding:5px 12px;font-size:13px;border-radius:99px}.chip:hover{border-color:var(--g)}
+.pi{width:100%;margin:16px 0;display:block}.th{width:64px;height:48px;object-fit:cover}.body h2{font-size:28px;margin:28px 0 8px}.body blockquote{border-left:3px solid var(--g);margin:18px 0;padding:4px 16px;color:var(--fg);font-size:19px}.body ul{color:var(--dim);line-height:1.8}
+.sf{display:flex;gap:6px}.sf input{width:190px;padding:8px 10px}.sf .btn{padding:8px 12px}textarea{resize:vertical}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script id="data" type="application/json">{"s":{"name":"GiveThemGist","tag":"Nigeria's top gisting platform","wa":"","email":"","addr":"Lagos, Nigeria","cur":"₦","about":"GiveThemGist is Nigeria's home for the gist: trending stories, sharp vlogs and gear worth your money.\n\nWe cover entertainment, tech, street talk and culture, straight from the people who live it. Everything we sell is checked by us, and you order directly on WhatsApp."},"blogs":[{"id":"b1","t":"Why Lagos Never Sleeps: The Gist Behind the Hustle","cat":"Lifestyle","body":"Welcome to GiveThemGist. Your first post lives here.\n\nOpen the Admin dashboard to replace this with your own gist.","ts":3},{"id":"b2","t":"Naija Tech Watch: What Changed This Month","cat":"Tech","body":"Edit or delete this sample from the Admin dashboard.","ts":2}],"vlogs":[{"id":"v1","t":"Street Gist: What Lagos Thinks This Week","url":"https://www.youtube.com/","ts":3}],"prods":[{"id":"p1","t":"Wireless Earbuds","price":15000,"cat":"Audio","d":"Sample product. Replace from Admin.","sold":true,"ts":3},{"id":"p2","t":"Power Bank 20,000mAh","price":22000,"cat":"Accessories","d":"Sample product. Replace from Admin.","sold":true,"ts":2}]}</script>
+<script>
+(function(){
+"use strict";
+const $=i=>document.getElementById(i),A=$('app');
+const D=JSON.parse($('data').textContent);
+const h=(t,a={},...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a)){if(v==null||v===false)continue;if(x==='class')e.className=v;else if(x.startsWith('on'))e.addEventListener(x.slice(2),v);else e.setAttribute(x,v===true?'':v)}k.flat().forEach(c=>{if(c!=null&&c!==false)e.append(c instanceof Node?c:document.createTextNode(String(c)))});return e};
+const clean=(s,n)=>String(s||'').replace(/[\u0000-\u001f\u007f<>]/g,' ').trim().slice(0,n);
+const okImg=s=>typeof s==='string'&&/^data:image\/jpeg;base64,[A-Za-z0-9+\/=]+$/.test(s);
+const okUrl=s=>{try{return new URL(s).protocol==='https:'}catch(e){return false}};
+const waOk=v=>/^[1-9]\d{7,14}$/.test(v);
+const fmt=n=>D.s.cur+Number(n).toLocaleString();
+const toast=t=>{const e=h('div',{class:'toast'},t);document.body.append(e);setTimeout(()=>e.remove(),3200)};
+const ID=()=>Math.random().toString(36).slice(2,9);
+const S=k=>D.s[k]||'';
+let canEdit=false,art=null,dirty=false,tab='Settings';
+let draft={t:'',cat:'',tags:'',body:'',cover:null,imgs:[],edit:null};
+
+/* ---- rich text renderer (safe DOM, no innerHTML) ---- */
+function inl(t){const o=[],re=/\*\*(.+?)\*\*|\*(.+?)\*|\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g;let i=0,m;while(m=re.exec(t)){if(m.index>i)o.push(t.slice(i,m.index));o.push(m[1]?h('strong',{},m[1]):m[2]?h('em',{},m[2]):h('a',{href:m[4],target:'_blank',rel:'noopener noreferrer nofollow',class:'lk'},m[3]));i=re.lastIndex}if(i<t.length)o.push(t.slice(i));return o}
+function rich(body,imgs){return String(body||'').split(/\n\n+/).map(b=>{b=b.trim();let m;
+ if(m=b.match(/^!\[\]\((\d+)\)$/))return okImg((imgs||[])[+m[1]])?h('img',{src:imgs[+m[1]],alt:'',class:'pi'}):null;
+ if(b.startsWith('## '))return h('h2',{class:'d'},b.slice(3));
+ if(b.startsWith('> '))return h('blockquote',{},inl(b.slice(2)));
+ if(b.split('\n').every(l=>l.startsWith('- ')))return h('ul',{},b.split('\n').map(l=>h('li',{},inl(l.slice(2)))));
+ return h('p',{},inl(b))})}
+const tagsOf=b=>(b.tags||[]);
+const cover=b=>b.cover||b.img;
+
+const media=(src,em,tag,price)=>h('div',{class:'im'},okImg(src)?h('img',{src,alt:'',loading:'lazy'}):em,tag&&h('span',{class:'tag'},tag),price!=null&&h('span',{class:'pr'},fmt(price)));
+const blogCard=b=>h('a',{class:'card',href:'#/post/'+b.id},media(cover(b),'📰',b.cat),h('div',{class:'bd'},h('div',{class:'meta'},'Blog'),h('h3',{class:'d'},b.t),h('p',{},(b.body||'').replace(/[#>*\[\]!()-]/g,'').slice(0,110)+'…')));
+const vlogCard=v=>h('a',{class:'card',href:okUrl(v.url)?v.url:'#/vlog',target:'_blank',rel:'noopener noreferrer'},media(v.img,'▶️','Vlog'),h('div',{class:'bd'},h('div',{class:'meta'},'Watch'),h('h3',{class:'d'},v.t),h('p',{},'Watch on YouTube →')));
+const prodCard=p=>h('div',{class:'card'},media(p.img,'📦',p.cat,p.price),h('div',{class:'bd'},h('h3',{class:'d'},p.t),h('p',{},p.d),h('button',{class:'btn wa',disabled:p.sold,onclick:()=>order(p)},p.sold?'Sold out':'Order on WhatsApp')));
+const sorted=a=>[...a].sort((x,y)=>(y.ts||0)-(x.ts||0));
+const sect=(t,link,items,fn)=>h('section',{class:'sec'},h('div',{class:'sh'},h('h2',{class:'d'},t),link&&h('a',{href:link},'See all →')),items.length?h('div',{class:'grid'},items.map(fn)):h('p',{class:'meta'},'Nothing here yet.'));
+const postView=b=>h('div',{class:'art'},h('div',{class:'meta'},b.cat),h('h1',{class:'d'},b.t||'Untitled'),okImg(cover(b))&&h('img',{src:cover(b),alt:'',class:'pi'}),h('div',{class:'body'},rich(b.body,b.imgs)),h('div',{class:'tags'},tagsOf(b).map(t=>h('a',{class:'chip',href:'#/tag/'+encodeURIComponent(t)},'#'+t))));
+
+function order(p){
+  if(!waOk(S('wa'))){toast('Seller has not set up WhatsApp yet.');return}
+  const dlg=h('dialog',{},h('div',{class:'box',style:'border:0;padding:0'},
+    h('h3',{class:'d',style:'font-size:26px;margin:0'},p.t),h('div',{class:'meta'},fmt(p.price)+' each'),
+    h('label',{},'Your name',h('input',{id:'on',maxlength:60})),
+    h('div',{class:'row'},h('label',{},'Quantity',h('input',{id:'oq',type:'number',min:1,max:20,value:1})),h('label',{},'Delivery area',h('input',{id:'oa',maxlength:60}))),
+    h('div',{class:'err',id:'oe'}),
+    h('div',{class:'row'},h('button',{class:'btn ghost',onclick:()=>dlg.close()},'Cancel'),h('button',{class:'btn wa',onclick:()=>{
+      const n=clean($('on').value,60),q=Math.floor(+$('oq').value),a=clean($('oa').value,60);
+      if(!n){$('oe').textContent='Enter your name.';return}if(!(q>=1&&q<=20)){$('oe').textContent='Quantity must be 1–20.';return}
+      const m=['Hello '+S('name')+', I want to order:','Product: '+p.t,'Ref: '+p.id,'Price: '+fmt(p.price),'Qty: '+q,'Total: '+fmt(p.price*q),'Name: '+n,a&&'Area: '+a].filter(Boolean).join('\n');
+      window.open('https://wa.me/'+S('wa')+'?text='+encodeURIComponent(m),'_blank','noopener,noreferrer');dlg.close();
+    }},'Continue on WhatsApp')),
+    h('div',{class:'meta',style:'text-transform:none'},'Never send card details or passwords in chat.')));
+  dlg.addEventListener('close',()=>dlg.remove());A.append(dlg);dlg.showModal();
+}
+function preview(b){const dlg=h('dialog',{style:'width:min(760px,96vw);max-height:92vh;overflow:auto'},h('div',{class:'meta',style:'color:var(--y)'},'PREVIEW — not published'),postView(b),h('button',{class:'btn ghost',onclick:()=>dlg.close()},'Close preview'));dlg.addEventListener('close',()=>dlg.remove());A.append(dlg);dlg.showModal()}
+
+function contactPage(){
+  const rows=[];const s=D.s;
+  if(S('addr'))rows.push(h('div',{},'📍 '+s.addr));
+  if(S('phone'))rows.push(h('div',{},'📞 ',h('a',{href:'tel:'+s.phone.replace(/[^\d+]/g,''),class:'lk'},s.phone)));
+  if(S('email'))rows.push(h('div',{},'✉️ ',h('a',{href:'mailto:'+s.email,class:'lk'},s.email)));
+  if(S('hours'))rows.push(h('div',{},'🕒 '+s.hours));
+  const soc=[['ig','Instagram'],['x','X'],['yt','YouTube'],['tt','TikTok']].filter(([k])=>okUrl(S(k)));
+  return h('div',{class:'art'},h('h1',{class:'d'},'Contact Us'),h('p',{},'Questions, tips, collabs or orders? Reach us any way you like.'),
+   h('div',{class:'box'},rows,soc.length&&h('div',{class:'tags'},soc.map(([k,l])=>h('a',{class:'chip',href:s[k],target:'_blank',rel:'noopener noreferrer'},l))),
+   waOk(S('wa'))?h('a',{class:'btn wa',href:'https://wa.me/'+s.wa,target:'_blank',rel:'noopener noreferrer'},'Chat on WhatsApp'):h('div',{class:'meta'},'WhatsApp coming soon')),
+   waOk(S('wa'))&&h('div',{class:'box',style:'margin-top:16px'},h('h3',{class:'d',style:'margin:0'},'Send a message'),h('label',{},'Your name',h('input',{id:'cn',maxlength:60})),h('label',{},'Message',h('textarea',{id:'cm',rows:4,maxlength:600})),
+    h('button',{class:'btn',onclick:()=>{const n=clean($('cn').value,60),m=clean($('cm').value,600);if(!n||!m){toast('Fill in name and message.');return}window.open('https://wa.me/'+s.wa+'?text='+encodeURIComponent('Hi '+s.name+', it\'s '+n+'. '+m),'_blank','noopener,noreferrer')}},'Send via WhatsApp')))
+}
+function searchPage(q){const t=q.toLowerCase(),has=x=>String(x||'').toLowerCase().includes(t);
+  const b=sorted(D.blogs).filter(x=>has(x.t)||has(x.body)||has(x.cat)||tagsOf(x).some(has)),v=sorted(D.vlogs).filter(x=>has(x.t)),p=sorted(D.prods).filter(x=>has(x.t)||has(x.d)||has(x.cat));
+  return [h('h1',{class:'d',style:'font-size:36px;margin:32px 0 0'},'Results for “'+q+'”'),b.length+v.length+p.length?null:h('p',{class:'meta'},'No results found.'),b.length&&sect('Blog',null,b,blogCard),v.length&&sect('Vlogs',null,v,vlogCard),p.length&&sect('Shop',null,p,prodCard)]}
+
+const pages={
+  home:()=>[h('section',{class:'hero'},h('div',{class:'meta',style:'color:var(--g)'},'🇳🇬 '+S('tag')),h('h1',{class:'d'},'Give them ',h('span',{},'the gist.')),h('p',{},'Trending blogs, fresh vlogs and gear worth buying — all in one place.'),h('div',{class:'row',style:'max-width:380px'},h('a',{class:'btn',href:'#/blog'},'Read the gist'),h('a',{class:'btn ghost',href:'#/shop'},'Shop now'))),
+    sect('Latest Blog','#/blog',sorted(D.blogs).slice(0,3),blogCard),sect('Latest Vlogs','#/vlog',sorted(D.vlogs).slice(0,3),vlogCard),sect('Shop Picks','#/shop',sorted(D.prods).slice(0,4),prodCard)],
+  blog:()=>{const all=[...new Set(D.blogs.flatMap(tagsOf))];return [all.length&&h('div',{class:'tags',style:'margin-top:28px'},all.map(t=>h('a',{class:'chip',href:'#/tag/'+encodeURIComponent(t)},'#'+t))),sect('The Blog',null,sorted(D.blogs),blogCard)]},
+  tag:t=>[sect('#'+t,'#/blog',sorted(D.blogs).filter(b=>tagsOf(b).includes(t)),blogCard)],
+  search:q=>searchPage(q||''),
+  vlog:()=>[sect('Vlogs',null,sorted(D.vlogs),vlogCard)],
+  shop:()=>[sect('The Shop',null,sorted(D.prods),prodCard),h('p',{class:'meta'},'Orders are completed on WhatsApp. Confirm price and delivery in chat before paying.')],
+  about:()=>[h('div',{class:'art'},h('h1',{class:'d'},'About Us'),S('about').split(/\n\n+/).map(x=>h('p',{},x)))],
+  contact:()=>[contactPage()],
+  post:id=>{const b=D.blogs.find(x=>x.id===id);return b?[h('div',{class:'art',style:'margin-bottom:0'},h('a',{class:'meta',href:'#/blog'},'← Back')),postView(b)]:[h('p',{},'Post not found.')]},
+  admin:()=>adminPage()
+};
+
+/* ---------- Admin ---------- */
+const field=(l,id,ph,type)=>h('label',{},l,h('input',{id,placeholder:ph||'',type:type||'text',maxlength:200}));
+function resize(f){return new Promise((res,rej)=>{if(!/^image\/(jpeg|png|webp)$/.test(f.type)||f.size>8e6)return rej();const i=new Image(),u=URL.createObjectURL(f);i.onload=()=>{const s=Math.min(1,800/i.width),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',.72))};i.onerror=rej;i.src=u})}
+const mark=()=>{dirty=true;go()};
+const delBtn=(k,x)=>h('button',{class:'tab',onclick:e=>{const b=e.currentTarget;if(b.dataset.c){D[k]=D[k].filter(y=>y!==x);mark()}else{b.dataset.c='1';b.textContent='Confirm?';setTimeout(()=>{b.dataset.c='';b.textContent='Delete'},3000)}}},'Delete');
+const syncDraft=()=>{draft.t=$('bt').value;draft.cat=$('bc').value;draft.tags=$('bg').value;draft.body=$('bb').value};
+function wrap(pre,post){const t=$('bb'),s=t.selectionStart,e=t.selectionEnd,v=t.value;t.value=v.slice(0,s)+pre+v.slice(s,e)+post+v.slice(e);t.focus();t.selectionStart=s+pre.length;t.selectionEnd=e+pre.length;syncDraft()}
+const draftPost=()=>({t:clean(draft.t,120),cat:clean(draft.cat,24)||'Gist',body:String(draft.body).replace(/[<>]/g,'').slice(0,20000),cover:draft.cover,imgs:draft.imgs,tags:[...new Set(String(draft.tags).split(',').map(x=>clean(x,24).toLowerCase()).filter(Boolean))].slice(0,10)});
+const upl=async(input,cb)=>{const f=input.files[0];if(!f)return;try{cb(await resize(f))}catch(e){toast('Use a JPG/PNG/WebP under 8 MB.')}};
+
+function adminPage(){
+  if(!canEdit)return [h('div',{class:'art'},h('h1',{class:'d'},'Admin'),h('p',{},'This dashboard is for the site owner. Open this page while signed in to claude.ai as the owner or an editor. Saving is enforced by the platform, so nobody else can change the site.'))];
+  const err=h('div',{class:'err'});
+  const row=(k,x,extra)=>h('div',{class:'ar'},h('span',{},x.t),h('span',{style:'display:flex;gap:6px;flex-wrap:wrap'},extra,delBtn(k,x)));
+  const img=async()=>{const f=$('fi').files[0];return f?await resize(f):null};
+  const imgF=h('label',{},'Image (optional)',h('input',{id:'fi',type:'file',accept:'image/jpeg,image/png,image/webp'}));
+  const add=(k,build)=>async()=>{try{const o=await build();if(!o)return;o.id=ID();o.ts=Date.now();D[k].push(o);mark()}catch(e){err.textContent='Check the fields and image.'}};
+  let body;
+  if(tab==='Settings'){const F=[['name','Site name'],['tag','Tagline'],['wa','WhatsApp number (country code, digits only)'],['phone','Phone (display)'],['email','Email'],['addr','Address'],['hours','Opening hours'],['ig','Instagram link (https)'],['x','X / Twitter link (https)'],['yt','YouTube link (https)'],['tt','TikTok link (https)'],['cur','Currency symbol']];
+   body=[...F.map(([k,l])=>field(l,'s_'+k)),h('label',{},'About us text',h('textarea',{id:'s_about',rows:5,maxlength:2000})),
+   h('button',{class:'btn',onclick:()=>{const w=$('s_wa').value.replace(/\D/g,'');if(w&&!waOk(w)){err.textContent='Invalid WhatsApp number.';return}
+    for(const k of ['ig','x','yt','tt']){const v=$('s_'+k).value.trim();if(v&&!okUrl(v)){err.textContent='Social links must start with https://';return}}
+    F.forEach(([k])=>{D.s[k]=clean($('s_'+k).value,k==='addr'?120:80)});D.s.wa=w;D.s.name=D.s.name||'GiveThemGist';D.s.cur=D.s.cur||'₦';['ig','x','yt','tt'].forEach(k=>D.s[k]=$('s_'+k).value.trim().slice(0,200));D.s.about=clean($('s_about').value,2000);mark()}},'Apply settings')]}
+  if(tab==='Blogs'){
+    const tb=(l,fn,t)=>h('button',{class:'tab',type:'button',title:t,onclick:fn},l);
+    body=[h('div',{class:'meta',style:'color:var(--y)'},draft.edit?'Editing post':'New post'),field('Title','bt'),h('div',{class:'row'},field('Category','bc'),field('Tags (comma separated)','bg','naija, tech, music')),
+     h('label',{},'Cover image',h('input',{type:'file',accept:'image/jpeg,image/png,image/webp',onchange:e=>upl(e.target,d=>{syncDraft();draft.cover=d;go()})})),draft.cover&&h('div',{class:'ar'},h('img',{src:draft.cover,class:'th'}),h('button',{class:'tab',onclick:()=>{syncDraft();draft.cover=null;go()}},'Remove cover')),
+     h('div',{class:'tabs',style:'margin:0'},tb('B',()=>wrap('**','**'),'Bold'),tb('I',()=>wrap('*','*'),'Italic'),tb('H2',()=>wrap('\n\n## ','\n\n'),'Heading'),tb('❝',()=>wrap('\n\n> ','\n\n'),'Quote'),tb('• List',()=>wrap('\n\n- ','\n\n'),'List'),
+       h('input',{id:'lk',placeholder:'https://link',style:'width:150px'}),tb('Link',()=>{const u=$('lk').value.trim();if(!okUrl(u)){toast('Link must start with https://');return}wrap('[','](' +u+')')},'Add link'),
+       h('label',{class:'tab',style:'cursor:pointer;display:inline-block;text-transform:none;font-size:14px;color:var(--fg)'},'🖼 Insert image',h('input',{type:'file',accept:'image/jpeg,image/png,image/webp',style:'display:none',onchange:e=>upl(e.target,d=>{syncDraft();draft.imgs.push(d);draft.body+='\n\n![]('+(draft.imgs.length-1)+')\n\n';go()})}))),
+     h('textarea',{id:'bb',rows:14,placeholder:'Write your gist. Blank line = new paragraph.',oninput:syncDraft}),
+     draft.imgs.length>0&&h('div',{class:'meta'},'Images in this post (click to insert again):'),h('div',{class:'tags'},draft.imgs.map((d,i)=>h('img',{src:d,class:'th',style:'cursor:pointer',title:'Insert again',onclick:()=>{syncDraft();draft.body+='\n\n![]('+i+')\n\n';go()}}))),
+     h('div',{class:'row'},h('button',{class:'btn ghost',onclick:()=>{syncDraft();const p=draftPost();if(!p.t){err.textContent='Add a title first.';return}preview(p)}},'👁 Preview'),
+       h('button',{class:'btn',onclick:()=>{syncDraft();const p=draftPost();if(!p.t||!p.body){err.textContent='Title and body required.';return}if(draft.edit){Object.assign(draft.edit,p)}else{p.id=ID();p.ts=Date.now();D.blogs.push(p)}draft={t:'',cat:'',tags:'',body:'',cover:null,imgs:[],edit:null};mark()}},draft.edit?'Save changes':'Add post')),
+     draft.edit&&h('button',{class:'tab',onclick:()=>{draft={t:'',cat:'',tags:'',body:'',cover:null,imgs:[],edit:null};go()}},'Cancel editing'),
+     h('div',{class:'meta',style:'margin-top:8px'},'Your posts'),...sorted(D.blogs).map(x=>row('blogs',x,[h('button',{class:'tab',onclick:()=>preview(x)},'Preview'),h('button',{class:'tab',onclick:()=>{draft={t:x.t,cat:x.cat||'',tags:tagsOf(x).join(', '),body:x.body||'',cover:cover(x)||null,imgs:[...(x.imgs||[])],edit:x};go();window.scrollTo(0,0)}},'Edit')]))]}
+  if(tab==='Vlogs')body=[field('Title','vt'),field('YouTube / video link (https)','vu','https://youtube.com/…'),imgF,h('button',{class:'btn',onclick:add('vlogs',async()=>{const t=clean($('vt').value,120),u=$('vu').value.trim();if(!t||!okUrl(u)){err.textContent='Title and a valid https link required.';return}return{t,url:u,img:await img()}})},'Add vlog'),...sorted(D.vlogs).map(x=>row('vlogs',x))];
+  if(tab==='Products')body=[field('Name','pt'),h('div',{class:'row'},field('Price','pp','','number'),field('Category','pc')),h('label',{},'Description',h('textarea',{id:'pd',rows:2,maxlength:300})),imgF,h('button',{class:'btn',onclick:add('prods',async()=>{const t=clean($('pt').value,80),p=+$('pp').value;if(!t||!isFinite(p)||p<0||p>1e9){err.textContent='Name and valid price required.';return}return{t,price:p,cat:clean($('pc').value,24),d:clean($('pd').value,300),sold:false,img:await img()}})},'Add product'),...sorted(D.prods).map(x=>row('prods',x,h('button',{class:'tab',onclick:()=>{x.sold=!x.sold;mark()}},x.sold?'Restock':'Sold out')))];
+  setTimeout(()=>{if(tab==='Settings'){Object.keys(D.s).forEach(k=>{const e=$('s_'+k);if(e)e.value=D.s[k]||''})}
+   if(tab==='Blogs'){$('bt').value=draft.t;$('bc').value=draft.cat;$('bg').value=draft.tags;$('bb').value=draft.body;['bt','bc','bg'].forEach(i=>$(i).oninput=syncDraft)}});
+  return [h('div',{class:'sec'},h('h1',{class:'d',style:'font-size:40px;margin:0'},'Admin Dashboard'),h('div',{class:'tabs'},['Settings','Blogs','Vlogs','Products'].map(t=>h('button',{class:'tab'+(t===tab?' on':''),onclick:()=>{tab=t;go()}},t))),h('div',{class:'box'},body,err),
+    dirty&&h('div',{class:'pub'},h('span',{},'Unpublished changes'),h('button',{class:'btn ghost',style:'color:#000;border-color:#000',onclick:publish},'Publish to site')))];
+}
+async function publish(){
+  if(!art){toast('Publishing unavailable here.');return}
+  const c=document.documentElement.cloneNode(true);
+  c.querySelector('#app').replaceChildren();
+  c.querySelector('#data').textContent=JSON.stringify(D).replace(/</g,'\\u003c');
+  try{await art.publish('<!DOCTYPE html>\n'+c.outerHTML)}catch(e){toast(e&&e.code==='conflict'?'Someone else published first — reload.':'Publish refused: owner/editor access required.')}
+}
+
+/* ---------- Router ---------- */
+function go(){
+  const p=(location.hash||'#/').split('/'),route=p[1]||'home';let id=p[2];try{id=decodeURIComponent(id||'')}catch(e){id=''}
+  const nm=S('name')||'GiveThemGist';
+  const nav=h('header',{},h('div',{class:'nav'},h('a',{class:'logo d',href:'#/'},nm.slice(0,-4),h('span',{},nm.slice(-4))),
+    h('nav',{class:'links'},[['blog','Blog'],['vlog','Vlogs'],['shop','Shop'],['about','About'],['contact','Contact']].map(([k,l])=>h('a',{href:'#/'+k,class:route===k?'on':''},l)),canEdit&&h('a',{href:'#/admin',class:route==='admin'?'on':''},'Admin')),
+    h('form',{class:'sf',onsubmit:e=>{e.preventDefault();const q=clean(e.target.q.value,60);if(q)location.hash='#/search/'+encodeURIComponent(q)}},h('input',{name:'q',type:'search',placeholder:'Search gist, vlogs, shop…',value:route==='search'?id:''}),h('button',{class:'btn',type:'submit','aria-label':'Search'},'🔍'))));
+  const view=(pages[route]||pages.home)(id);
+  A.replaceChildren(nav,h('main',{},view),h('footer',{},'© '+new Date().getFullYear()+' '+nm+' · '+S('tag')));
+  document.title=nm+' — '+S('tag');
+}
+window.addEventListener('hashchange',()=>{go();window.scrollTo(0,0)});go();
+(async()=>{try{const u=await claude.use('user');canEdit=!!(u&&u.canEdit());art=await claude.use('artifact');go()}catch(e){}})();
+})();
+</script>
+</body>
+</html>
